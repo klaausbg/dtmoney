@@ -5,18 +5,20 @@ import { App } from "./App";
 
 createServer({
   routes() {
-    this.message = "api";
+    this.namespace = "api";
     this.get("/transactions", () => {
-      return [
-        {
-          id: 1,
-          title: "Transaction 1",
-          amout: 400,
-          type: "deposit",
-          categpry: "food",
-          createdAt: new Date(),
-        },
-      ];
+      return {
+        transactions: [
+          {
+            id: 1,
+            title: "Transaction 1",
+            amount: 400,
+            type: "deposit",
+            category: "food",
+            createdAt: new Date(),
+          },
+        ],
+      };
     });
   },
 });

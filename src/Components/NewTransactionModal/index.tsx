@@ -14,6 +14,10 @@ export function NewTransactionModal({
     <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
       <Container>
         <h2>Confirmar transacao</h2>
+        <input placeholder="Título" />
+        <input type="number" placeholder="Valor" />
+        <input placeholder="Categoria" />
+        <button type="submit">Cadastrar</button>
       </Container>
     </Modal>
   );
