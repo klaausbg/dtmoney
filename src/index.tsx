@@ -6,19 +6,16 @@ import { App } from "./App";
 createServer({
   routes() {
     this.namespace = "api";
+
+    // GET request for transactions
     this.get("/transactions", () => {
-      return {
-        transactions: [
-          {
-            id: 1,
-            title: "Transaction 1",
-            amount: 400,
-            type: "deposit",
-            category: "food",
-            createdAt: new Date(),
-          },
-        ],
-      };
+      return this.schema.all("transaction");
+    });
+
+    // POST request to add a new transaction
+    this.post("/transactions", (schema: any, request: any) => {
+      const data = JSON.parse(request.requestBody); // Correcting the typo: resquestBody to requestBody
+      return schema.transactions.create("transaction", data); // Save the new transaction to the Mirage DB
     });
   },
 });
@@ -31,7 +28,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
